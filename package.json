@@ -31,7 +31,8 @@
     "specification",
     "spec",
     "performance metrics",
-    "metrics"
+    "metrics",
+    "nodeprime"
   ],
   "bugs": {
     "url": "https://github.com/doc-metrix/doc-metrix-node/issues"
