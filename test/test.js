@@ -5,7 +5,7 @@ var // Expectation library:
 	chai = require( 'chai' ),
 
 	// Metrics specification:
-	METRICS = require( '' ),
+	METRICS = require( './../specs' ),
 
 	// Module to be tested:
 	metrics = require( './../lib' );
@@ -71,7 +71,7 @@ describe( 'doc-metrix-node', function tests() {
 		});
 
 		it( 'should filter documented metric names', function test() {
-			assert.isArray( metrics.mfilter( /.+/i ) );
+			assert.isArray( metrics.mfilter( /Utilization/i ) );
 		});
 
 	});
@@ -165,7 +165,7 @@ describe( 'doc-metrix-node', function tests() {
 		});
 
 		it( 'should return a filtered list of metric specifications', function test() {
-			assert.isObject( metrics.mget( /.+/i ) );
+			assert.isObject( metrics.mget( /Utilization/i ) );
 		});
 
 		it( 'should return null if no metrics match a provided filter', function test() {
@@ -187,7 +187,7 @@ describe( 'doc-metrix-node', function tests() {
 		it( 'should list all devices associated with metrics', function test() {
 			var list = metrics.dlist();
 			assert.isArray( list );
-			assert.ok( list.indexOf( '' ) !== -1 );
+			assert.ok( list.indexOf( 'ram' ) !== -1 );
 		});
 
 	});
@@ -226,11 +226,11 @@ describe( 'doc-metrix-node', function tests() {
 		});
 
 		it( 'should return true for a device which has associated specifications', function test() {
-			assert.ok( metrics.dexists( '' ) );
+			assert.ok( metrics.dexists( 'ram' ) );
 		});
 
 		it( 'should return true for a device which has an associated specification regardless of input name case', function test() {
-			assert.ok( metrics.dexists( '' ) );
+			assert.ok( metrics.dexists( 'rAm' ) );
 		});
 
 	});
@@ -269,7 +269,7 @@ describe( 'doc-metrix-node', function tests() {
 		});
 
 		it( 'should return metric specification(s) associated with a device', function test() {
-			var obj = metrics.dget( '' );
+			var obj = metrics.dget( 'ram' );
 			assert.isObject( obj );
 			assert.ok( Object.keys( obj ).length );
 		});
@@ -281,7 +281,7 @@ describe( 'doc-metrix-node', function tests() {
 		});
 
 		it( 'should return metric specification(s) associated with a device regardless of input device case', function test() {
-			var obj = metrics.dget( '' );
+			var obj = metrics.dget( 'rAm' );
 			assert.isObject( obj );
 			assert.ok( Object.keys( obj ).length );
 		});

@@ -1,5 +1,5 @@
 {
-  "name": "doc-metrix-node",
+  "name": "doc-metrix",
   "version": "0.0.0",
   "description": "Provides an API for doc-metrix performance metric specifications.",
   "author": {
@@ -26,7 +26,12 @@
     "url": "git://github.com/doc-metrix/doc-metrix-node.git"
   },
   "keywords": [
-    "doc-metrix"
+    "doc-metrix",
+    "documentation",
+    "specification",
+    "spec",
+    "performance metrics",
+    "metrics"
   ],
   "bugs": {
     "url": "https://github.com/doc-metrix/doc-metrix-node/issues"
