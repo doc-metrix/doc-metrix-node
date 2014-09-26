@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
 *
-*	SCRIPTS: spec
+*	SCRIPTS: resources
 *
 *
 *	DESCRIPTION:
-*		- Retrieves metric specifications.
+*		- Retrieves metric resources.
 *
 *
 *	NOTES:
@@ -37,7 +37,7 @@
 		request = require( 'request' );
 
 
-	// SPECIFICATIONS //
+	// RESOURCES //
 
 	var resources = {},
 		names = [
@@ -48,27 +48,27 @@
 			'general'
 		];
 
-	// NOTE: no specification should be named 'index'. This is a reserved name.
+	// NOTE: no resource should be named 'index'. This is a reserved name.
 
 	names.map( function ( name ) {
-		resources[ name ] = 'https://raw.githubusercontent.com/doc-metrix/' + name + '/master/spec/index.json';
+		resources[ name ] = 'https://raw.githubusercontent.com/doc-metrix/' + name + '/master/doc/index.json';
 	});
 
 
 	// VARIABLES //
 
-	var filepath = path.resolve( __dirname, '../specs' );
+	var filepath = path.resolve( __dirname, '../docs' );
 
 
 	// FUNCTIONS //
 
 	/**
-	* FUNCTION: getSpecs()
-	*	Retrieves the latest specifications.
+	* FUNCTION: getResources()
+	*	Retrieves the latest metric resources.
 	*
 	* @private
 	*/
-	function getSpecs() {
+	function getResources() {
 		var keys = Object.keys( resources ),
 			numKeys = keys.length,
 			clbk = getClbk( numKeys );
@@ -82,36 +82,36 @@
 				'uri': resources[ keys[i] ]
 			}, onResponse( keys[i], clbk ) );
 		}
-	} // end FUNCTION getSpecs()
+	} // end FUNCTION getResources()
 
 	/**
 	* FUNCTION: getClbk( total )
-	*	Returns a callback which merges individual specifications into a single specification.
+	*	Returns a callback which merges individual documentation into a compiled documentation object.
 	*
 	* @private
-	* @param {Number} total - number of specifications to merge
-	* @returns {Function} callback to invoke upon receiving a specification
+	* @param {Number} total - number of docs to merge
+	* @returns {Function} callback to invoke upon receiving metric documentation
 	*/
 	function getClbk( total ) {
-		var SPEC = {},
+		var DOC = {},
 			counter = 0;
 		/**
-		* FUNCTION: merge( spec )
-		*	Merges an individual specification into a single spec.
+		* FUNCTION: merge( doc )
+		*	Merges an individual documentation into a single object.
 		*
 		* @private
-		* @param {Object} spec - metric specification
+		* @param {Object} doc - metric documentation
 		*/
-		return function merge( spec ) {
-			var metrics = Object.keys( spec ),
+		return function merge( doc ) {
+			var metrics = Object.keys( doc ),
 				metric;
 			for ( var i = 0; i < metrics.length; i++ ) {
 				metric = metrics[ i ];
-				if ( SPEC.hasOwnProperty( metric ) ) {
+				if ( DOC.hasOwnProperty( metric ) ) {
 					// Print a warning...
-					console.warn( 'Duplicate name found when merging multiple specifications: ' + metric + '. Overwriting previous assigned value.' );
+					console.warn( 'Duplicate name found when merging multiple documentation resources: ' + metric + '. Overwriting previous assigned value.' );
 				}
-				SPEC[ metric ] = spec[ metric ];
+				DOC[ metric ] = doc[ metric ];
 			}
 			if ( ++counter === total ) {
 				writeToFile();
@@ -120,13 +120,13 @@
 
 		/**
 		* FUNCTION: writeToFile()
-		*	Writes the merged specification to file.
+		*	Writes the merged documentation to file.
 		*
 		* @private
 		*/
 		function writeToFile() {
 			var filename = path.join( filepath, 'index.json' );
-			fs.writeFile( filename, JSON.stringify( SPEC ), 'utf8', function onError( error ) {
+			fs.writeFile( filename, JSON.stringify( DOC ), 'utf8', function onError( error ) {
 				if ( error ) {
 					throw new Error( error );
 				}
@@ -140,7 +140,7 @@
 	* 
 	* @private
 	* @param {String} name - resource name
-	* @param {Function} clbk - callback to invoke after returning a specification
+	* @param {Function} clbk - callback to invoke after returning a resource
 	* @returns {Function} response handler
 	*/
 	function onResponse( name, clbk ) {
@@ -155,24 +155,24 @@
 		* @param {Object} body - response body
 		*/
 		return function onResponse( error, response, body ) {
-			var spec;
+			var doc;
 			if ( error ) {
 				throw new Error( error );
 			}
 			if ( !body ) {
-				throw new Error( 'Error when retrieving metric specification: ' + name + '.' );
+				throw new Error( 'Error when retrieving metric resource: ' + name + '.' );
 			}
 			try {
-				spec = JSON.parse( body );
+				doc = JSON.parse( body );
 			} catch ( err ) {
 				console.log( body );
-				throw new Error( 'Unable to parse body content as JSON for metric specification: ' + name + '.' );
+				throw new Error( 'Unable to parse body content as JSON for metric resource: ' + name + '.' );
 			}
 			fs.writeFile( filename, body, 'utf8', function onError( error ) {
 				if ( error ) {
 					throw new Error( error );
 				}
-				clbk( spec );
+				clbk( doc );
 			});
 		}; // end FUNCTION onResponse()
 	} // end FUNCTION onResponse()
@@ -180,6 +180,6 @@
 
 	// RUN //
 
-	getSpecs();
+	getResources();
 
 })();

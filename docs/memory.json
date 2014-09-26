@@ -1,0 +1,932 @@
+{
+   "mem.active": {
+        "displayName": "Active Virtual Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory that has been used more recently and usually will not be reclaimed unless absolutely necessary (such as when there is a great need by the kernel to free up memory).",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization"
+        ]
+    },
+    "mem.activeAnon": {
+        "displayName": "Active Anonymous RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of active memory that is not mapped to the filesystem and exists in an anonymous region in memory such as a process' stack or heap space.",
+        "notes": "The maximum value is the total amount of active memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization"
+        ]
+    },
+    "mem.activeFile": {
+        "displayName": "Active Disk Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of active memory that is mapped to the filesystem.",
+        "notes": "The maximum value is the total amount of active memory.",
+        "devices": ["disk"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization"
+        ]
+    },
+    "mem.anonHugePages": {
+        "displayName": "Anonymous Huge Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of pages larger than the system's default page size. These pages are not backed to the filesystem and have been mapped to user processes.",
+        "notes": "The Linux kernel must be configured with CONFIG_TRANSPARENT_HUGEPAGE to show this metric.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://oreilly.com/catalog/spt2/chapter/ch04.html#72236"
+        ]
+    },
+    "mem.anonPages": {
+        "displayName": "Anonymous Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of pages that are not backed to the filesystem and have been mapped to user processes.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://oreilly.com/catalog/spt2/chapter/ch04.html#72236"
+        ]
+    },
+    "mem.bounce": {
+        "displayName": "Bounce Buffers",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of RAM that is used as buffers for data streams between memory and devices (such as SCSI or PCI devices).",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.buffers": {
+        "displayName": "Block Buffers",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory used as buffers for storing filesystem metadata when disks are accessed. For example, when a file is accessed, the content of the file is stored in the page cache while the file metadata, such as file permissions, are stored in buffers.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en",
+            "http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization",
+            "http://stackoverflow.com/questions/6345020/linux-memory-buffer-vs-cache"
+        ]
+    },
+    "mem.cached": {
+        "displayName": "Page Cache",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory used for the page cache to store the files when reading from or writing to disk. Does not include mem.swapCached.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization",
+            "http://stackoverflow.com/questions/6345020/linux-memory-buffer-vs-cache"
+        ]
+    },
+    "mem.commitLimit": {
+        "displayName": "Virtual Memory Commit Limit",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": {
+            "equation": "(RAM_{total}*r_{overcommit}) + swap_{total}",
+            "variables": {
+                "RAM_{total}": {
+                    "description": "the total amount of usable RAM",
+                    "reference": "https://github.com/doc-metrix/memory"
+                },
+                "r_{overCommit}": {
+                    "description": "the overcommit ratio specifies the fraction of total usable RAM which is used in the calculation of the commit limit",
+                    "reference": "https://github.com/doc-metrix/memory"
+                },
+                "swap_{total}": {
+                    "description": "the total amount of swap disk",
+                    "reference": "https://github.com/doc-metrix/memory"
+                }
+            }
+        },
+        "description": "The total amount of memory currently available to be allocated on the system based on the overcommit_ratio ('vm.overcommit_ratio' or '/proc/sys/vm/overcommit_ratio'). This limit is only adhered to if strict overcommit accounting is enabled (mode 2 in 'vm.overcommit_memory' or '/proc/sys/vm/overcommit_memory'). For example, on a system with 1GB of RAM and 7GB of swap with an overcommit_ratio of 30, the CommitLimit is 7.3GB.",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "https://www.kernel.org/doc/Documentation/vm/overcommit-accounting"
+        ]
+    },
+    "mem.committedAS": {
+        "displayName": "Committed Virtual Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory presently allocated to processes on the system, and henceforth the maximum amount of memory that these processes may use. With strict overcommit enabled on the system (mode 2 in 'vm.overcommit_memory' or '/proc/sys/vm/overcommit_memory'), allocations which would exceed the CommitLimit will not be permitted. This is useful if one needs to guarantee that processes will not fail due to lack of memory once that memory has been successfully allocated.",
+        "notes": "The maximum value is the CommitLimit (if strict overcommit accounting is enabled, which is mode 2 in 'vm.overcommit_memory' or '/proc/sys/vm/overcommit_memory').",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "https://www.kernel.org/doc/Documentation/vm/overcommit-accounting",
+            "http://careers.directi.com/display/tu/Understanding+and+optimizing+Memory+utilization"
+        ]
+    },
+    "mem.directMap1G": {
+        "displayName": "1GB Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of RAM that is mapped using a 1GB page size.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.directMap2M": {
+        "displayName": "2MB Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of RAM that is mapped using a 2MB page size.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.directMap4k": {
+        "displayName": "4KB Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of RAM that is mapped using a 4KB page size.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.dirty": {
+        "displayName": "Dirty Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of pages in RAM that differ from their corresponding mapped data on disk (for example, as a result of asynchronous disk write). A large number of dirty pages means that many disk writes have not completed.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.hardwareCorrupted": {
+        "displayName": "Corrupted Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory that has been corrupted.",
+        "notes": "Linux kernel must be configured with CONFIG_MEMORY_FAILURE to show this metric.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.highFree": {
+        "displayName": "Free High RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of free highmem RAM that is above approximately 860MB used for user processes or the page cache. The kernel must use tricks to access this memory, making it slower to access than lowmem.",
+        "notes": "Starting with Linux 2.6.19, the kernel must be configured with CONFIG_HIGHMEM to show this metric. The maximum value is the total amount of high memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.highTotal": {
+        "displayName": "Total High RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of highmem RAM that is above approximately 860MB used for user processes or the page cache. The kernel must use tricks to access this memory, making it slower to access than lowmem.",
+        "notes": "Starting with Linux 2.6.19, the kernel must be configured with CONFIG_HIGHMEM to show this metric. The maximum value is the total amount of usable RAM (total RAM minus a few reserved bits and the kernel binary code) minus the total amount of low memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.hugePagesFree": {
+        "displayName": "Free Huge Pages",
+        "units": "hugepages",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of huge pages in the pool of huge pages that are not yet allocated.",
+        "notes": "The Linux kernel must be configured with CONFIG_HUGETLB_PAGE to show this metric. The maximum value is the total amount of huge pages.",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.hugePagesRsvd": {
+        "displayName": "Reserved Huge Pages",
+        "units": "hugepages",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of huge pages for which a commitment to allocate from the pool of huge pages has been made, but no allocation has yet been made. These reserved huge pages guarantee that a process will be able to allocate a huge page from the pool at fault time (when the process accesses the memory).",
+        "notes": "The Linux kernel must be configured with CONFIG_HUGETLB_PAGE to show this metric. The maximum value is the total amount of huge pages.",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.hugePagesSurp": {
+        "displayName": "Surplus Huge Pages",
+        "units": "hugepages",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of huge pages above the current number of 'persistent' huge pages in the kernel's pool of huge pages.",
+        "notes": "The Linux kernel must be configured with CONFIG_HUGETLB_PAGE to show this metric. The maximum value is set by /proc/sys/vm/nr_overcommit_hugepages.",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt"
+        ]
+    },
+    "mem.hugePagesTotal": {
+        "displayName": "Total Huge Pages",
+        "units": "hugepages",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total number of huge pages in the pool of huge pages.",
+        "notes": "The Linux kernel must be configured with CONFIG_HUGETLB_PAGE to show this metric.",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.hugePageSize": {
+        "displayName": "Huge Page Size",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The size of huge pages.",
+        "notes": "The Linux kernel must be configured with CONFIG_HUGETLB_PAGE to show this metric.",
+        "devices": null,
+        "classification": "memory",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt"
+        ]
+    },
+    "mem.inactive": {
+        "displayName": "Inactive Virtual Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory which has been less recently used. It is more eligible to be reclaimed for other purposes.",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.inactiveAnon": {
+        "displayName": "Inactive Anonymous RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of inactive memory that is not mapped to the filesystem and exists in an anonymous region in memory such as a process' stack or heap space. Inactive memory is memory which has been less recently used and more eligible to be reclaimed for other purposes.",
+        "notes": "The maximum value is the total amount of inactive memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.inactiveFile": {
+        "displayName": "Inactive Disk Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of inactive memory that is mapped to the filesystem. Inactive memory is memory which has been less recently used and more eligible to be reclaimed for other purposes.",
+        "notes": "The maximum value is the total amount of inactive memory.",
+        "devices": ["disk"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.kernelStack": {
+        "displayName": "Kernel Stack",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory allocated to kernel stacks. The more processes running on the system, the more kernel stacks are allocated.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.lowFree": {
+        "displayName": "Free Low RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of free lowmem RAM which can be used for everything that highmem can be used for, but is also available for the kernel to use for its own data structures. Among many other things, it is where everything from Slab is allocated.",
+        "notes": "Starting with Linux 2.6.19, the kernel must be configured with CONFIG_HIGHMEM to show this metric. The maximum is the total amount of low memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.lowTotal": {
+        "displayName": "Total Low RAM",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of lowmem RAM which can be used for everything that highmem can be used for, but is also available for the kernel to use for its own data structures. Among many other things, it is where everything from Slab is allocated.",
+        "notes": "Starting with Linux 2.6.19, the kernel must be configured with CONFIG_HIGHMEM to show this metric.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.mapped": {
+        "displayName": "Mapped RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of file content which have already been mapped inside a process' address space and have been paged-in (swapped from disk to RAM).",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.memFree": {
+        "displayName": "Free RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of free lowmem and free highmem.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.memTotal": {
+        "displayName": "Total RAM",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of usable RAM (total RAM minus a few reserved bits and the kernel binary code).",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.mlocked": {
+        "displayName": "Mlocked RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of allocated memory that is strictly prohibited from being paged-out (swapped from RAM to disk). Since this memory cannot be swapped out, major page faults will not happen. Therefore, memory access time is guaranteed to be as fast as possible. Certain processes, such as those related to interactive user experience requiring a real time response, may be mlocked to ensure quality experience.",
+        "notes": "From Linux 2.6.28 to 2.6.30, the kernel must be configured with CONFIG_UNEVICTABLE_LRU to show this metric.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.nfsUnstable": {
+        "displayName": "Unstable NFS Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of network file system (NFS) pages sent to the server, but has not yet been written to disk.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.pageTables": {
+        "displayName": "Page Tables",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory used by page tables (mappings from virtual memory addresses to RAM addresses).",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.sReclaimable": {
+        "displayName": "Slab Reclaimable RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of slab that may be reclaimed, such as caches. Slab is cache that is dedicated for kernel data structures.",
+        "notes": "The maximum value is the total amount of slab memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.sUnreclaim": {
+        "displayName": "Slab Unreclaimable RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of slab that cannot be reclaimed when memory needs to be freed. Slab is cache that is dedicated for kernel data structures.",
+        "notes": "The maximum value is the total amount of slab memory.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.shMem": {
+        "displayName": "Shared Virtual Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of shared memory used by group(s) processes. For example, pages allocated for System V IPC (Inter Process Communication).",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.slab": {
+        "displayName": "Slab RAM",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory used to cache kernel data structures.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.swapCached": {
+        "displayName": "Swap Pages Cached",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory that was once paged-out and is now paged-in, but still exists in the swap file. If memory needs to be freed, these pages will not need to be paged-out again because they are already in the swap file. This saves I/O.",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.swapFree": {
+        "displayName": "Free Swap Disk Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of swap space that is currently unused.",
+        "notes": "The maximum value is the total amount of swap memory.",
+        "devices": ["disk"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.swapTotal": {
+        "displayName": "Total Swap Disk Memory",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of swap space available.",
+        "notes": "",
+        "devices": ["disk"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.unevictable": {
+        "displayName": "Unevictable RAM",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of pages that cannot be paged-out of RAM. Unevictable is a superset of mlocked.",
+        "notes": "From Linux 2.6.28 to 2.6.30, the kernel must be configured with CONFIG_UNEVICTABLE_LRU to show this metric.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.vmallocChunk": {
+        "displayName": "Largest Virtual Memory Block",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory in the largest contiguous block of virtual memory address space that is available for a new virtual memory mapping.",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.vmallocTotal": {
+        "displayName": "Total Virtual Memory",
+        "units": "KB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The total amount of reserved space for virtual memory allocation.",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.vmallocUsed": {
+        "displayName": "Used Virtual Memory",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of pages which have been virtually memory allocated.",
+        "notes": "The maximum value is the total amount of reserved space for virtual memory allocation.",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.writeBack": {
+        "displayName": "Writeback Pages",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of dirty pages in RAM currently being written back to disk.",
+        "notes": "The maximum value is the total amount of dirty pages.",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.writeBackTmp": {
+        "displayName": "Writeback Buffers",
+        "units": "KB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of memory used by filesystem on user space (FUSE) for temporary writeback buffers.",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://wiki.fcctt.org/index.php?title=FC39Understanding_Virtual_Memory_Statistics_in_/proc/meminfo/en"
+        ]
+    },
+    "mem.swapSpaceUtilization": {
+        "displayName": "Swap Space Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{swap_{total} - swap_{free}}{swap_{total}}",
+            "variables": {
+                "swap_{free}": {
+                    "description": "the amount of free swap disk",
+                    "reference": "https://github.com/doc-metrix/memory"
+                },
+                "swap_{total}": {
+                    "description": "the total amount of swap disk",
+                    "reference": "https://github.com/doc-metrix/memory"
+                }
+            }
+        },
+        "description": "The decimal percentage of swap disk space being used (swap disk used divided by total swap disk size).",
+        "notes": "",
+        "devices": ["disk"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.ramSpaceUtilization": {
+        "displayName": "RAM Space Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{RAM_{total} - RAM_{free}}{RAM_{total}}",
+            "variables": {
+                "RAM_{free}": {
+                    "description": "the amount of free RAM",
+                    "reference": "https://github.com/doc-metrix/memory"
+                },
+                "RAM_{total}": {
+                    "description": "the total amount of usable RAM",
+                    "reference": "https://github.com/doc-metrix/memory"
+                }
+            }
+        },
+        "description": "The decimal percentage of RAM being used (RAM used divided by total usable RAM, i.e., total RAM minus a few reserved bits and the kernel binary code).",
+        "notes": "",
+        "devices": ["ram"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "mem.virtualSpaceUtilization": {
+        "displayName": "Virtual Memory Space Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{virtualMemory_{used}}{virtualMemory_{total}}",
+            "variables": {
+                "virtualMemory_{used}": {
+                    "description": "the amount of space that have been virtually memory allocated",
+                    "reference": "https://github.com/doc-metrix/memory"
+                },
+                "virtualMemory_{total}": {
+                    "description": "the total amount of space reserved for virtual memory allocation",
+                    "reference": "https://github.com/doc-metrix/memory"
+                }
+            }
+        },
+        "description": "The decimal percentage of virtual memory space being used (allocated virtual memory space divided by total space reserved for virtual memory allocation).",
+        "notes": "",
+        "devices": ["virtualmemory"],
+        "classification": "memory",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    }
+}

@@ -1,0 +1,147 @@
+{    
+    "load.1m": {
+        "displayName": "Average Load (1 min)",
+        "units": "processes and threads",
+        "max": "MAX_FLOAT",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "raw",
+        "formula": null,
+        "description": "The average number of jobs in the run queue (state R) or waiting for disk I/O (state D) over the last minute.",
+        "notes": "",
+        "devices": ["cpu"],
+        "classification": "cpu",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://en.wikipedia.org/wiki/Load_%28computing%29"
+        ]
+    },
+    "load.5m": {
+        "displayName": "Average Load (5 min)",
+        "units": "processes and threads",
+        "max": "MAX_FLOAT",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "raw",
+        "formula": null,
+        "description": "The average number of jobs in the run queue (state R) or waiting for disk I/O (state D) over the past 5 minutes.",
+        "notes": "",
+        "devices": ["cpu"],
+        "classification": "cpu",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://en.wikipedia.org/wiki/Load_%28computing%29"
+        ]
+    },
+    "load.15m": {
+        "displayName": "Average Load (15 min)",
+        "units": "processes and threads",
+        "max": "MAX_FLOAT",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "raw",
+        "formula": null,
+        "description": "The average number of jobs in the run queue (state R) or waiting for disk I/O (state D) for the last 15 minutes.",
+        "notes": "",
+        "devices": ["cpu"],
+        "classification": "cpu",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://en.wikipedia.org/wiki/Load_%28computing%29"
+        ]
+    },
+    "load.running": {
+        "displayName": "Number of Processes and Threads Running",
+        "units": "processes and threads",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": {
+            "equation": "n_{running}",
+            "variables": {
+                "n_{running}": {
+                    "description": "the number of processes and threads running"
+                }
+            }
+        },
+        "description": "The number of currently running kernel scheduled entities (processes and threads).",
+        "notes": "",
+        "devices": ["cpu"],
+        "classification": "cpu",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://stackoverflow.com/questions/11987495/linux-proc-loadavg"
+        ]
+    },
+    "load.threads": {
+        "displayName": "Total Processes and Threads",
+        "units": "processes and threads",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": {
+            "equation": "n_{scheduled}",
+            "variables": {
+                "n_{scheduled}": {
+                    "description": "the number of scheduled processes and threads"
+                }
+            }
+        },
+        "description": "The number of kernel scheduled entities (processes and threads) that exist in the system.",
+        "notes": "",
+        "devices": ["cpu"],
+        "classification": "cpu",
+        "refs": [
+            "http://linux.die.net/man/5/proc",
+            "http://stackoverflow.com/questions/11987495/linux-proc-loadavg"
+        ]
+    },
+    "load.lastPID": {
+        "displayName": "Last Process ID",
+        "units": null,
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The process ID (PID) of the process that was most recently created on the system.",
+        "notes": "",
+        "devices": ["cpu"],
+        "classification": "cpu",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    },
+    "uptime": {
+        "displayName": "System Uptime",
+        "units": "s",
+        "max": "MAX_FLOAT",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "time",
+        "type": "raw",
+        "formula": {
+            "equation": "T_{up}",
+            "variables": {
+                "T_{up}": {
+                    "description": "the elapsed time since last reboot"
+                }
+            }
+        },
+        "description": "The amount of time in seconds that the system has been running since the last reboot.",
+        "notes": "",
+        "devices": null,
+        "classification": "",
+        "refs": [
+            "http://linux.die.net/man/5/proc"
+        ]
+    }
+}

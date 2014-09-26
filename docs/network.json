@@ -1,0 +1,698 @@
+{
+  "net.bytesRX": {
+    "displayName": "Bytes Received",
+    "units": "B",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "d_{rx}",
+      "variables": {
+        "d_{rx}": {
+          "description": "the number of bytes received"
+        }
+      }
+    },
+    "description": "The total number of bytes received by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://www.kbrandt.com/2009/07/debuging-a-script-that-parses-procnetdev.html",
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "net.bytesTX": {
+    "displayName": "Bytes Transmitted",
+    "units": "B",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "d_{tx}",
+      "variables": {
+        "d_{tx}": {
+          "description": "the number of bytes transmitted"
+        }
+      }
+    },
+    "description": "The total number of bytes transmitted by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://www.kbrandt.com/2009/07/debuging-a-script-that-parses-procnetdev.html",
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "net.carrierTX": {
+    "displayName": "Carrier Signal Errors",
+    "units": "errors",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{CarrierLosses}",
+      "variables": {
+        "n_{CarrierLosses}": {
+          "description": "the number of loss-of-carrier signal events detected by the device driver"
+        }
+      }
+    },
+    "description": "The total number of loss-of-carrier-signal events detected by the device driver. If this value is high, especially when it has only been active for a short time, it means the connection is going up and down a lot. This can be caused by problems either on the device, the device on the other end, or a faulty ethernet cable plugged in to the device.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.collsTX": {
+    "displayName": "Packet Collisions",
+    "units": "collisions",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{collisions}",
+      "variables": {
+        "n_{collisions}": {
+          "description": "the number of packet collisions detected when transmitting"
+        }
+      }
+    },
+    "description": "The number of packet collisions detected when transmitting. Packet collisions occur when multiple devices use a shared resource (such as an ethernet cable) to transmit a packet at the same time. Frequent packet collisions degrade network performance.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.webopedia.com/TERM/P/packet_collision.html"
+    ]
+  },
+  "net.compressedRX": {
+    "displayName": "Compressed Packets Recieved",
+    "units": "packets",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{CompressedPacketsRX}",
+      "variables": {
+        "n_{CompressedPacketsRX}": {
+          "description": "the number of compressed packets received"
+        }
+      }
+    },
+    "description": "Number of compressed packets received by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.freesoft.org/CIE/RFC/1144/6.htm"
+    ]
+  },
+  "net.compressedTX": {
+    "displayName": "Compressed Packets Sent",
+    "units": "packets",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{CompressedPacketsTX}",
+      "variables": {
+        "n_{CompressedPacketsTX}": {
+          "description": "the number of compressed packets transmitted"
+        }
+      }
+    },
+    "description": "Number of compressed packets sent by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.freesoft.org/CIE/RFC/1144/6.htm"
+    ]
+  },
+  "net.dropRX": {
+    "displayName": "Dropped Packets (Receiving)",
+    "units": "packets",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{DroppedPacketsRX} + n_{MissingPacketsRX}",
+      "variables": {
+        "n_{DroppedPacketsRX}": {
+          "description": "the number of received packets dropped by an interface"
+        },
+        "n_{MissingPacketsRX}": {
+          "description": "the number of expected packets not received"
+        }
+      }
+    },
+    "description": "Number of packets dropped and otherwise not received by a network interface. This means that your system is unable to process incoming packets fast enough, overwhelming its buffer, or there is an issue in your cabling leading to packet loss.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+        "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "net.dropTX": {
+    "displayName": "Dropped Packets (Transmitting)",
+    "units": "packets",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{DroppedPacketsTX}",
+      "variables": {
+        "n_{DroppedPacketsTX}": {
+          "description": "the number of packets dropped before transmitting"
+        }
+      }
+    },
+    "description": "Number of packets dropped by a network interface. This means that your system is unable to process outgoing packets fast enough, overwhelming its buffer.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "net.errsRX": {
+    "displayName": "Errors (Receiving)",
+    "units": "errors",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{ErrorsRX}",
+      "variables": {
+        "n_{ErrorsRX}": {
+          "description": "the number of malformed packets received"
+        }
+      }
+    },
+    "description": "Number of malformed packets received by a network interface. Errors are typically caused by bursts of traffic causing overloads, a speed/duplex mismatch with the connecting port on the other end, or a large number of security rules.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.errsTX": {
+    "displayName": "Errors (Transmitting)",
+    "units": "errors",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{ErrorsTX}",
+      "variables": {
+        "n_{ErrorsTX}": {
+          "description": "the number of errors detected when transmitting"
+        }
+      }
+    },
+    "description": "Number of errors detected by a network interface when transmitting. Errors are typically caused by bursts of traffic causing overloads, a speed/duplex mismatch with the connecting port on the other end, or a large number of security rules.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.fifoRX": {
+    "displayName": "Receiving Queue Errors",
+    "units": "errors",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{FifoErrorsRX}",
+      "variables": {
+        "n_{FifoErrorsRX}": {
+          "description": "the number of receiving queue errors"
+        }
+      }
+    },
+    "description": "The number of receiving queue errors detected by a network interface. This is often caused by receiving more packets than the computer can process, leading to buffer overflows.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.fifoTX": {
+    "displayName": "Transmitting Queue Errors",
+    "units": "errors",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{FifoErrorsTX}",
+      "variables": {
+        "n_{FifoErrorsTX}": {
+          "description": "the number of transmitting queue errors"
+        }
+      }
+    },
+    "description": "The number of transmitting queue errors detected by a network interface. This is often caused by trying to send more packets than the network connection can handle, leading to buffer overflows.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.frameRX": {
+    "displayName": "Frame Errors",
+    "units": "errors",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{FrameErrsRX}",
+      "variables": {
+        "n_{FrameErrsRX}": {
+          "description": "the number of packets received with framing errors"
+        }
+      }
+    },
+    "description": "Number of packets received by an interface with framing errors. This is often a physical issue (faulty cables or bad Network Interface Card), though it may be caused by mismatched duplex settings.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html",
+      "http://kb.juniper.net/InfoCenter/index?page=content&id=KB27597"
+    ]
+  },
+  "net.multicastRX": {
+    "displayName": "Multicast Frames Received",
+    "units": "frames",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{MulticastFramesRX}",
+      "variables": {
+        "n_{MulticastFramesRX}": {
+          "description": "the number of multicast frames received"
+        }
+      }
+    },
+    "description": "Number of multicast frames received by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.packetsRX": {
+    "displayName": "Packets Received",
+    "units": "packets",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{PacketsRX}",
+      "variables": {
+        "n_{PacketsRX}": {
+          "description": "the number of packets received"
+        }
+      }
+    },
+    "description": "Number of packets received by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.packetsTX": {
+    "displayName": "Packets Transmitted",
+    "units": "packets",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{PacketsTX}",
+      "variables": {
+        "n_{PacketsTX}": {
+          "description": "the number of packets transmitted"
+        }
+      }
+    },
+    "description": "Number of packets transmitted by a network interface.",
+    "notes": "",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}",
+      "lo\\d*"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.linuxdevcenter.com/pub/a/linux/2000/11/16/LinuxAdmin.html"
+    ]
+  },
+  "net.utilizationRX": {
+    "displayName": "Network Utilization (Receiving)",
+    "units": "utilization",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta d_{rx}}{BW \\cdot \\Delta t}",
+      "variables": {
+        "\\Delta d_{rx}": {
+          "description": "the amount of data received in a measured time period"
+        },
+        "BW": {
+          "description": "the bandwidth of the network interface"
+        },
+        "\\Delta t": {
+          "description": "the amount of time measured"
+        }
+      }
+    },
+    "description": "Percentage of a network interface's maximum bandwidth being used for receiving packets.",
+    "notes": "The data received is reported in bytes while bandwidth is in megabits per second, so some conversion is necessary to ensure the units match.",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://linux.die.net/man/8/ethtool",
+      "http://www.hp.com/rnd/device_help/help/hpwnd/webhelp/HPJ3298A/utilization.htm"
+    ]
+  },
+  "net.utilizationTX": {
+    "displayName": "Network Utilization (Transmitting)",
+    "units": "utilization",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta d_{tx}}{BW \\cdot \\Delta t}",
+      "variables": {
+        "\\Delta d_{tx}": {
+          "description": "the amount of data transmitted in a measured time period"
+        },
+        "BW": {
+          "description": "the bandwidth of the network interface" 
+        },
+        "\\Delta t": {
+          "description": "the amount of time measured"
+        }
+      }
+    },
+    "description": "Percentage of this network interface's maximum bandwidth being used for transmitting packets.",
+    "notes": "The data received is reported in bytes while bandwidth is in megabits per second, so some conversion is necessary to ensure the units match.",
+    "devices": [
+      "eth\\d+",
+      "em\\d+",
+      "en\\d+",
+      "ppp\\d+",
+      "vmnet\\d+",
+      "wlan\\d+",
+      "p\\d+p\\d+(?:_\\d+){0,1}"
+    ],
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://linux.die.net/man/8/ethtool",
+      "http://www.hp.com/rnd/device_help/help/hpwnd/webhelp/HPJ3298A/utilization.htm"
+    ]
+  },
+  "net.utilizationRXAverage": {
+    "displayName": "Average Network Utilization (Receiving)",
+    "units": "utilization",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{net \\neq lo}}\\sum_{net \\neq lo}\\frac{\\Delta d_{rx}}{BW \\cdot \\Delta t}",
+      "variables": {
+        "n_{net \\neq lo}": {
+          "description": "the number of network interfaces, excluding the loopback interface"
+        },
+        "\\Delta d_{rx}": {
+          "description": "the amount of data received in a measured time period"
+        },
+        "BW": {
+          "description": "the bandwidth of a network interface"
+        },
+        "\\Delta t": {
+          "description": "the amount of time measured"
+        }
+      }
+    },
+    "description": "Average percentage of the maximum bandwidth across all interfaces (except loopback) being used for receiving packets.",
+    "notes": "The data received is reported in bytes while bandwidth is in megabits per second, so some conversion is necessary to ensure the units match.",
+    "devices": null,
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://linux.die.net/man/8/ethtool",
+      "http://www.hp.com/rnd/device_help/help/hpwnd/webhelp/HPJ3298A/utilization.htm"
+    ]
+  },
+  "net.utilizationTXAverage": {
+    "displayName": "Average Network Utilization (Transmitting)",
+    "units": "utilization",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{net \\neq lo}}\\sum_{net \\neq lo}\\frac{\\Delta d_{tx}}{BW \\cdot \\Delta t}",
+      "variables": {
+        "n_{net \\neq lo}": {
+          "description": "the number of network interfaces, excluding the loopback interface"
+        },
+        "\\Delta d_{tx}": {
+          "description": "the amount of data transmitted in a measured time period"
+        },
+        "BW": {
+          "description": "the bandwidth of a network interface"
+        },
+        "\\Delta t": {
+          "description": "the amount of time measured"
+        }
+      }
+    },
+    "description": "Average percentage of the maximum bandwidth across all interfaces (except loopback) being used for transmitting packets.",
+    "notes": "The data transmitted is reported in bytes while bandwidth is in megabits per second, so some conversion is necessary to ensure the units match.",
+    "devices": null,
+    "classification": "network",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://linux.die.net/man/8/ethtool",
+      "http://www.hp.com/rnd/device_help/help/hpwnd/webhelp/HPJ3298A/utilization.htm"
+    ]
+  }
+}

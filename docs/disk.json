@@ -1,0 +1,684 @@
+{
+    "disk.ioInProgress": {
+        "displayName": "I/Os in Progress",
+        "units": "I/O",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "integer",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of I/O operations currently in progress. The metric is incremented as requests are submitted and decremented as requests finish. The metric does not include requests that are in queue waiting to be submitted.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://linuxcommand.org/man_pages/iostat1.html"
+        ]
+    },
+    "disk.readsIssued": {
+        "displayName": "Reads Completed",
+        "units": "reads",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "count",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of reads completed successfully.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.readsMerged": {
+        "displayName": "Reads Merged",
+        "units": "reads",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "count",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of adjacent reads merged for read efficiency. For example, two 4K reads may become one 8K read before being ultimately handed to the disk. The merged read will be queued (and counted) as only one I/O.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.sectorsRead": {
+        "displayName": "Sectors Read",
+        "units": "sectors",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "count",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of sectors read successfully.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.sectorsWritten": {
+        "displayName": "Sectors Written",
+        "units": "sectors",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "count",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of sectors written successfully.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.timeDoingIO": {
+        "displayName": "Time Spent Doing IO",
+        "units": "ms",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "time",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of milliseconds spent processing IO requests. This metric only increases when the number of I/Os in progress is nonzero.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.timeReading": {
+        "displayName": "Time Spent Reading",
+        "units": "ms",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "time",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of milliseconds spent by all reads.",
+        "notes": "A possibility exists that this value will overflow and wrap on a 32-bit system that has been continuously running for an extended time.",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.timeWriting": {
+        "displayName": "Time Spent Writing",
+        "units": "ms",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "time",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of milliseconds spent by all writes.",
+        "notes": "A possibility exists that this value will overflow and wrap on a 32-bit system that has been continuously running for an extended time.",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.writesCompleted": {
+        "displayName": "Writes Completed",
+        "units": "writes",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "count",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of writes completed successfully.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.writesMerged": {
+        "displayName": "Writes Merged",
+        "units": "writes",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "count",
+        "type": "raw",
+        "formula": null,
+        "description": "The number of adjacent writes merged for write efficiency. For example, two 4K writes may become one 8K write before being ultimately handed to the disk. The merged write will be queued (and counted) as only one I/O.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.weightedTimeDoingIO": {
+        "displayName": "Weighted Time Spent Doing IO",
+        "units": "ms",
+        "max": "MAX_UNSIGNED_LONG",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "time",
+        "type": "raw",
+        "formula": null,
+        "description": "The weighted amount of time processing I/Os that is incremented every time the number of I/Os in progress is updated. The stepwise increment is equal to the number of I/Os in progress multiplied by the number of milliseconds spent doing I/Os since the last time number of I/Os in progress was updated. This can provide an easy measure of both I/O completion time and the backlog that may be accumulating.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "https://www.kernel.org/doc/Documentation/iostats.txt",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.size": {
+        "displayName": "File System Size",
+        "units": "GiB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "raw",
+        "formula": null,
+        "description": "The total size of the file system.",
+        "notes": "The unit is converted to GiB if not already reported in this unit.",
+        "devices": [
+            "sd[a-z]"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "http://en.wikipedia.org/wiki/Df_(Unix)",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.used": {
+        "displayName": "File System Used",
+        "units": "GiB",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of disk space allocated to existing files in the file system.",
+        "notes": "The maximum value is the total size of the file system. The unit is converted to GiB if not already reported in this unit.",
+        "devices": [
+            "sd[a-z]"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "http://en.wikipedia.org/wiki/Df_(Unix)",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.available": {
+        "displayName": "File System Available",
+        "units": "GiB",
+        "max": null,
+        "min": null,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "raw",
+        "formula": null,
+        "description": "The amount of space available within the file system for the creation of new files by unprivileged users. When this value is less than or equal to zero, it will not be possible to create any new files on the file system without first deleting others, unless the process has appropriate privileges.",
+        "notes": "The maximum value is the total size of the file system. The minimum value can be less than 0. The unit is converted to GiB if not already reported in this unit.",
+        "devices": [
+            "sd[a-z]"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "http://en.wikipedia.org/wiki/Df_(Unix)",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.spaceUtilization": {
+        "displayName": "Disk Space Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{disk_{used}}{disk_{size}}",
+            "variables": {
+                "disk_{used}": {
+                    "description": "the amount of space used on an individual disk"
+                },
+                "disk_{size}": {
+                    "description": "the total amount of space on an individual disk"
+                }
+            }
+        },
+        "description": "The disk space utilization (used storage divided by total size) for an individual disk.",
+        "notes": "",
+        "devices": [
+            "sd[a-z]"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.spaceUtilizationAverage": {
+        "displayName": "Average Disk Space Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{1}{n_{disk}}\\sum_{disks}\\frac{disk_{used}}{disk_{size}}",
+            "variables": {
+                "disk_{used}": {
+                    "description": "the amount of space used on an individual disk"
+                },
+                "disk_{size}": {
+                    "description": "the total amount of space on an individual disk"
+                },
+                "n_{disks}": {
+                    "description": "the total number of disks"
+                }
+            }
+        },
+        "description": "The average disk space utilization (used storage divided by total size) across all disks.",
+        "notes": "",
+        "devices": null,
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.timeUtilization": {
+        "displayName": "Disk Time Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{\\Delta t_{DiskInUse}}{\\Delta t}",
+            "variables": {
+                "\\Delta t_{DiskInUse}": {
+                    "description": "the amount of time the disk spent performing I/O operations during a measurement interval"
+                },
+                "\\Delta t": {
+                    "description": "the measurement interval"
+                }
+            }
+        },
+        "description": "The disk time utilization (time spent doing I/O operations in a measurement interval divided by that interval) for an individual disk",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.timeUtilizationAverage": {
+        "displayName": "Average Disk Time Utilization",
+        "units": "utilization",
+        "max": 1,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "percentage",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{1}{n_{disks}}\\sum_{disks}\\frac{\\Delta t_{DiskInUse}}{\\Delta t}",
+            "variables": {
+                "\\Delta t_{DiskInUse}": {
+                    "description": "the amount of time the disk spent performing I/O operations during a measurement interval"
+                },
+                "\\Delta t": {
+                    "description": "the measurement interval"
+                },
+                "n_{disks}": {
+                    "description": "the total number of disks"
+                }
+            }
+        },
+        "description": "The average disk time utilization (time spent doing I/O operations in a measurement interval divided by that interval) across all disks.",
+        "notes": "",
+        "devices": null,
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt"
+        ]
+    },
+    "disk.readRate": {
+        "displayName": "Disk Read Rate",
+        "units": "MB/s",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{sector_{read}*sector_{size}}{1000*t_{reading}}",
+            "variables": {
+                "sector_{read}": {
+                    "description": "the total number of sectors read on an individual disk since the last reboot"
+                },
+                "sector_{size}": {
+                    "description": "the size of a logical sector on an individual disk"
+                },
+                "t_{reading}": {
+                    "description": "the amount of time an individual disk spent reading since the last reboot"
+                }
+            }
+        },
+        "description": "The amount of data read divided by the time spent reading on an individual disk since the last reboot.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://unix.stackexchange.com/questions/2668/finding-the-sector-size-of-a-partition"
+        ]
+    },
+    "disk.readRateAverage": {
+        "displayName": "Average Disk Read Rate",
+        "units": "MB/s",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{1}{n_{disks}}\\sum_{disks}\\frac{sector_{read}*sector_{size}}{1000*t_{reading}}",
+            "variables": {
+                "sector_{read}": {
+                    "description": "the total number of sectors read on an individual disk since the last reboot"
+                },
+                "sector_{size}": {
+                    "description": "the size of a logical sector on an individual disk"
+                },
+                "t_{reading}": {
+                    "description": "the amount of time an individual disk spent reading since the last reboot"
+                },
+                "n_{disks}": {
+                    "description": "the total number of disks"
+                }
+            }
+        },
+        "description": "The average of data read divided by time spent reading across all disks since the last reboot.",
+        "notes": "",
+        "devices": null,
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://unix.stackexchange.com/questions/2668/finding-the-sector-size-of-a-partition"
+        ]
+    },
+    "disk.writeRate": {
+        "displayName": "Disk Write Rate",
+        "units": "MB/s",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{sector_{written}*sector_{size}}{1000*t_{writing}}",
+            "variables": {
+                "sector_{written}": {
+                    "description": "the total number of sectors written on an individual disk since the last reboot"
+                },
+                "sector_{size}": {
+                    "description": "the size of a logical sector on an individual disk"
+                },
+                "t_{writing}": {
+                    "description": "the amount of time an individual disk spent writing since the last reboot"
+                }
+            }
+        },
+        "description": "The amount of data written divided by the time spent writing on an individual disk since the last reboot.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://unix.stackexchange.com/questions/2668/finding-the-sector-size-of-a-partition"
+        ]
+    },
+    "disk.writeRateAverage": {
+        "displayName": "Average Disk Write Rate",
+        "units": "MB/s",
+        "max": null,
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{1}{n_{disks}}\\sum_{disks}\\frac{sector_{written}*sector_{size}}{1000*t_{writing}}",
+            "variables": {
+                "sector_{written}": {
+                    "description": "the total number of sectors written on an individual disk since the last reboot"
+                },
+                "sector_{size}": {
+                    "description": "the size of a logical sector on an individual disk"
+                },
+                "t_{writing}": {
+                    "description": "the amount of time an individual disk spent writing since the last reboot"
+                },
+                "n_{disks}": {
+                    "description": "the total number of disks"
+                }
+            }
+        },
+        "description": "The average of data written divided by time spent writing across all disks since the last reboot.",
+        "notes": "",
+        "devices": null,
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://unix.stackexchange.com/questions/2668/finding-the-sector-size-of-a-partition"
+        ]
+    },
+    "disk.readWriteRatio": {
+        "displayName": "Disk Read Write Ratio",
+        "units": null,
+        "max": "INF",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{sector_{read}}{sector_{written}}",
+            "variables": {
+                "sector_{read}": {
+                    "description": "the total number of sectors read on an individual disk since the last reboot"
+                },
+                "sector_{written}": {
+                    "description": "the total number of sectors written on an individual disk since the last reboot"
+                }
+            }
+        },
+        "description": "The ratio of data read divided by data written on this disk since the last reboot.",
+        "notes": "",
+        "devices": [
+            "dm-\\d+",
+            "loop\\d+",
+            "md\\d+",
+            "ram\\d+",
+            "sd[a-z]",
+            "sd[a-z]\\d+"
+        ],
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://unix.stackexchange.com/questions/2668/finding-the-sector-size-of-a-partition"
+        ]
+    },
+    "disk.readWriteRatioAverage": {
+        "displayName": "Average Disk Read Write Ratio",
+        "units": null,
+        "max": "INF",
+        "min": 0,
+        "sigFigs": null,
+        "dataType": "numeric",
+        "type": "derived",
+        "formula": {
+            "equation": "\\frac{1}{n_{disks}}\\sum_{disks}\\frac{sector_{read}}{sector_{written}}",
+            "variables": {
+                "sector_{read}": {
+                    "description": "the total number of sectors read on individual disk since the last reboot"
+                },
+                "sector_{written}": {
+                    "description": "the total number of sectors written on an individual disk since the last reboot"
+                },
+                "n_{disks}": {
+                    "description": "the total number of disks"
+                }
+            }
+        },
+        "description": "The average ratio of data read divided by data written across all disks since the last reboot.",
+        "notes": "",
+        "devices": null,
+        "classification": "disk",
+        "refs": [
+            "http://linux.die.net/man/1/df",
+            "https://www.kernel.org/doc/Documentation/devices.txt",
+            "http://unix.stackexchange.com/questions/2668/finding-the-sector-size-of-a-partition"
+        ]
+    }
+}

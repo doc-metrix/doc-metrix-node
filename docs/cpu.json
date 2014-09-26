@@ -1,0 +1,790 @@
+{
+  "cpu.guestAverage": {
+    "displayName": "Guest Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{guest}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{guest}": {
+          "description": "the amount of time spent in guest mode during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent running a virtual CPU for a guest OS (virtual machine) across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.guestNiceAverage": {
+    "displayName": "Nice Guest Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{NiceGuest}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{NiceGuest}": {
+          "description": "the amount of time spent in nice guest mode during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent running a virtual CPU for a guest OS (virtual machine) with a positive niceness value (low priority).",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most archictures. Nice values have an inverse relation to priority: processes with highly positive nice values are lower priority, while those with negative nice values are high priority. This value is used by the OS when scheduling tasks for an overloaded processor.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://en.wikipedia.org/wiki/Nice_(Unix)"
+    ]
+  },
+  "cpu.idleAverage": {
+    "displayName": "CPU Idle Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{idle}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{idle}": {
+          "description": "the amount of time spent in idle mode during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent idle across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.interruptsAverage": {
+    "displayName": "Interrupts (Average)",
+    "units": "interrupts",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}n_{interrupt}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "n_{interrupt}": {
+            "description": "the number of interrupts"
+        }
+      }
+    },
+    "description": "Average number of interrupts across all CPUs. An interrupt occurs when hardware or software sends a signal to the processor telling it to temporarily halt what it is currently executing and perform some other task.",
+    "notes": "",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://en.wikipedia.org/wiki/Interrupt"
+    ]
+  },
+  "cpu.iowaitAverage": {
+    "displayName": "I/O Wait Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{io}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{io}": {
+          "description": "the amount of time spent waiting for I/O operations during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time processors are waiting for I/O operations across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.irqAverage": {
+    "displayName": "Interrupt Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\frac{\\Delta t_{irq}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{irq}": {
+          "description": "the amount of time spent processing hardware interrupts during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent dealing with hardware interrupts across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.niceAverage": {
+    "displayName": "User Nice Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\frac{\\Delta t_{nice}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{nice}": {
+          "description": "the amount of time spent processing niced user tasks during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time executing tasks in user mode with a positive nice value (tasks with low priority).",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures. Nice values have an inverse relation to priority: processes with highly positive nice values are lower priority, while those with negative nice values are high priority. This value is used by the OS when scheduling tasks for an overloaded processor.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://en.wikipedia.org/wiki/Nice_(Unix)"
+    ]
+  },
+  "cpu.procsBlockedAverage": {
+    "displayName": "Blocked Processes",
+    "units": "processes",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}n_{BlockedProcesses}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "n_{BlockedProcesses}": {
+          "description": "the number of processes waiting for I/O operations to complete"
+        }
+      }
+    },
+    "description": "Average number of processes waiting for I/O operations to complete across all CPUs.",
+    "notes": "",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.procsRunningAverage": {
+    "displayName": "Running Processes",
+    "units": "processes",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}n_{RunningProcesses}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "n_{RunningProcesses}": {
+          "description": "the number of processes currently executing"
+        }
+      }
+    },
+    "description": "Average number of processes currently executing across all CPUs.",
+    "notes": "",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.softirqAverage": {
+    "displayName": "Software Interrupt Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{softirq}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{softirq}": {
+          "description": "the amount of time spent processing software interrupts during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent dealing with software interrupts across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ] 
+  },
+  "cpu.stealAverage": {
+    "displayName": "CPU Steal Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{steal}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{steal}": {
+          "description": "the amount of time spent spent in involuntary wait during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent in \"involuntary wait\" across all CPUs. This is time that cannot be classified in one of the other categories (e.g. system, idle, etc).",
+    "notes": "This is most often only an issue when multiple VMs are running on the same physical machine. If a VM has tasks that can run, but it is unable to run them because the hypervisor is dedicating CPU time to another VM, this will show up as CPU steal. Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.systemAverage": {
+    "displayName": "System Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0, 
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{system}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{system}": {
+          "description": "the amount of time spent processing system tasks during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent executing processes in kernel mode across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.userAverage": {
+    "displayName": "User Mode Percentage (Average)",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\frac{\\Delta t_{user}}{\\Delta t}",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{user}": {
+          "description": "the amount of time spent processing user tasks during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent executing processes in user mode across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+        "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.utilizationAverage": {
+    "displayName": "CPU Utilization (Average)",
+    "units": "utilization",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{1}{n_{cpu}}\\sum_{cpu}\\left(1 - \\frac{\\Delta t_{idle}}{\\Delta t}\\right)",
+      "variables": {
+        "n_{cpu}": {
+          "description": "the number of CPU cores"
+        },
+        "\\Delta t_{idle}": {
+            "description": "the amount of time spent idle during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of CPU processing resources used between two timepoints across all CPUs.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures. There are multiple ways of calculating this metric, mainly in determining what counts as non-idle time.",
+    "devices": null,
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.design-reuse.com/articles/8289/how-to-calculate-cpu-utilization.html"
+    ]
+  },
+  "cpu.guest": {
+    "displayName": "Guest Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{guest}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{guest}": {
+          "description": "the amount of time spent in guest mode during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time spent running a virtual CPU for a guest OS (virtual machine).",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.guestNice": {
+    "displayName": "Nice Guest Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{NiceGuest}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{NiceGuest}": {
+          "description": "the amount of time spent in niced guest mode during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time spent running a virtual CPU for a guest OS (virtual machine) with a positive niceness value (low priority).",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures. Nice values have an inverse relationship to priority: processes with highly positive nice values are lower priority, while those with negative nice values are high priority. This value is used by the OS when scheduling tasks for an overloaded processor.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://en.wikipedia.org/wiki/Nice_(Unix)"
+    ]
+  },
+  "cpu.idle": {
+    "displayName": "CPU Idle Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{idle}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{idle}": {
+          "description": "the amount of time spent in idle mode during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time CPU spent idle.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+        "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.interrupts": {
+    "displayName": "Interrupts",
+    "units": "interrupts",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{interrupt}",
+      "variables": {
+        "n_{interrupt}": {
+          "description": "the number of interrupts"
+        }
+      }
+    },
+    "description": "Number of interrupts handled by CPU. An interrupt occurs when hardware or software sends a signal to the processor telling it to temporarily halt what it is currently executing and perform some other task.",
+    "notes": "",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://en.wikipedia.org/wiki/Interrupt"
+    ]
+  },
+  "cpu.iowait": {
+    "displayName": "I/O Wait Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{io}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{io}": {
+          "description": "the amount of time spent waiting for I/O operations during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time processor is waiting for I/O operations to complete.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.irq": {
+    "displayName": "Interrupt Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{irq}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{irq}": {
+          "description": "the amount of time spent processing hardware interrupts during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time spent dealing with hardware interrupts.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.nice": {
+    "displayName": "User Nice Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{nice}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{nice}": {
+          "description": "the amount of time spent processing niced user tasks during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time executing tasks in user mode with a positive nice value (tasks with a low priority).",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures. Nice values have an inverse relation to priority: processes with highly positive nice values are lower priority, while those with negative nice values are high priority. This value is used by the OS when scheduling tasks for an overloaded processor.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://en.wikipedia.org/wiki/Nice_(Unix)"
+    ]
+  },
+  "cpu.procsBlocked": {
+    "displayName": "Blocked Processes",
+    "units": "processes",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{BlockedProcesses}",
+      "variables": {
+        "n_{BlockedProcesses}": {
+          "description": "the number of processes waiting for I/O operations to complete"
+        }
+      }
+    },
+    "description": "Number of processes currently waiting for I/O operation to complete.",
+    "notes": "",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.procsRunning": {
+    "displayName": "Running Processes",
+    "units": "processes running",
+    "max": "MAX_UNSIGNED_LONG",
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "count",
+    "type": "raw",
+    "formula": {
+      "equation": "n_{RunningProcesses}",
+      "variables": {
+        "n_{RunningProcesses}": {
+          "description": "the number of processes currently executing"
+        }
+      }
+    },
+    "description": "Number of processes currently executing on processor.",
+    "notes": "",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.softirq": {
+    "displayName": "Software Interrupt Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{softirq}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{softirq}": {
+          "description": "the amount of time spent processing software interrupts during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time spent dealing with software interrupts.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ] 
+  },
+  "cpu.steal": {
+    "displayName": "CPU Steal Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{steal}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{steal}": {
+          "description": "the amount of time spent in involuntary wait during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Average percentage of time spent in \"involuntary wait\". This is time that cannot be classified in one of the other categories (e.g. system, idle, etc).",
+    "notes": "This is most often only an issue when multiple VMs are running on the same physical machine. If a VM has tasks that can run, but it is unable to run them because the hypervisor is dedicating CPU time to another VM, this will show up as CPU steal. Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "*",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.system": {
+    "displayName": "System Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage", 
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{system}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{system}": {
+          "description": "the amount of time spent processing system tasks during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time processor has spent executing in kernel mode.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.user": {
+    "displayName": "User Mode Percentage",
+    "units": "percent",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "\\frac{\\Delta t_{user}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{user}": {
+          "description": "the amount of time spent processing user tasks during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of time spent executing processes in user mode.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc"
+    ]
+  },
+  "cpu.utilization": {
+    "displayName": "CPU Utilization",
+    "units": "utilization",
+    "max": 1,
+    "min": 0,
+    "sigFigs": null,
+    "dataType": "percentage",
+    "type": "derived",
+    "formula": {
+      "equation": "1 - \\frac{\\Delta t_{idle}}{\\Delta t}",
+      "variables": {
+        "\\Delta t_{idle}": {
+            "description": "the amount of time spent idle during a measurement interval"
+        },
+        "\\Delta t": {
+          "description": "the measurement interval"
+        }
+      }
+    },
+    "description": "Percentage of CPU processing resources used between two timepoints.",
+    "notes": "Time is measured in units of USER_HZ, which is 1/100th of a second (a jiffy) on most architectures. There are multiple ways of calculating this metric, mainly in determining what counts as non-idle time.",
+    "devices": ["cpu\\d+"],
+    "classification": "cpu",
+    "refs": [
+      "http://linux.die.net/man/5/proc",
+      "http://www.design-reuse.com/articles/8289/how-to-calculate-cpu-utilization.html"
+    ]
+  }
+}
