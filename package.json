@@ -1,6 +1,6 @@
 {
   "name": "doc-metrix",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Provides an API for doc-metrix performance metric documentation.",
   "author": {
     "name": "Athan Reines",
